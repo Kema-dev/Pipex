@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 08:47:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/04/21 18:43:24 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/05/29 11:28:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	*kemalloc(size_t nmemb, size_t size)
 	if (!elem)
 	{
 		errno = ENOMEM;
-		exit(kemaexit(ENOMEM));
+		exit(kemaexit("Malloc failed"));
 	}
 	new_mem = ft_calloc(1, sizeof(t_list));
 	if (!new_mem)
 	{
 		free (elem);
 		errno = ENOMEM;
-		exit(kemaexit(ENOMEM));
+		exit(kemaexit("Malloc failed"));
 	}
 	new_mem->content = elem;
 	new_mem->next = NULL;
@@ -92,14 +92,10 @@ void	kemaclear(void)
 	beg = NULL;
 }
 
-int	kemaexit(int	errnum)
+int	kemaexit(char	*str)
 {
-	int	ret;
-
-	(void)errnum;
 	kemaclear();
-	ret = errno;
-	if (ret)
-		ft_dprintf(STDERR_FILENO, "Error %d : %s\n", ret, strerror(ret));
-	return (ret);
+	if (errno)
+		perror(str);
+	return (errno);
 }

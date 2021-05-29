@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 02:01:54 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/04/21 17:57:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/05/29 11:27:11 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ void				ft_lstprint(char *format, t_list *lst);
 void				*kemalloc(size_t nmemb, size_t size);
 int					kemafree(void	*ptr);
 void				kemaclear(void);
-int					kemaexit(int	errnum);
+int					kemaexit(char	*str);
 
 #endif

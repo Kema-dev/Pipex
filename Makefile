@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/22 10:55:11 by jjourdan          #+#    #+#              #
-#    Updated: 2021/04/21 17:27:40 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/05/29 11:51:28 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	my_project
+NAME		=	pipex
 
-ARGS		=	foo bar
+ARGS		=	file1 "ls -l -a" file2 "ls -l -a"
 
 CC			=	gcc
 
@@ -36,7 +36,7 @@ DEBUG_OUT	=	debug.out
 
 INCS_DIR	=	includes/
 
-INCS		=	my_project.h
+INCS		=	pipex.h
 
 INCS_FULL	=	$(addprefix $(INCS_DIR), $(INCS))
 
@@ -63,7 +63,7 @@ all:			libraries $(NAME)
 %.o: 			%.c $(INCS_FULL)
 				$(CC) $(FLAGS) -I $(INCS_DIR) -c $< -o $@
 
-$(NAME): 		$(OBJS)
+$(NAME): 		$(OBJS) $(LIBS_FILES)
 				$(CC) -I $(INCS_DIR) $(OBJS) $(LIBS_FILES) -o $(NAME)
 
 libraries:
