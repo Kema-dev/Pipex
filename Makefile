@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/22 10:55:11 by jjourdan          #+#    #+#              #
-#    Updated: 2021/05/29 13:44:04 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/05/30 09:23:43 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@
 
 NAME		=	pipex
 
-ARGS		=	file1 "ls -l -a" file2 "ls -l -a"
+ARGS		=	file1 "cat -n" "wc -w" file2
 
 CC			=	gcc
 

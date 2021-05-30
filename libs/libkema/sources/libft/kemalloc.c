@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 08:47:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/29 11:28:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 10:46:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	kemaclear(void)
 
 int	kemaexit(char	*str)
 {
-	kemaclear();
 	if (errno)
 		perror(str);
+	kemaclear();
 	return (errno);
 }

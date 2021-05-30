@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:28:31 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/29 14:09:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 09:20:02 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libs/libkema/includes/libkema.h"
 # include <stdbool.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 //	*	errors handlers
 
@@ -31,6 +33,9 @@
 
 //	*	main.c
 int		main(int argc, char **argv, char **envp);
-void	ft_pipex_exec(pid_t pid, int *pip, char **argv, char **envp);
+void	ft_pipex_exec_cmd(char *argv, char **envp);
+void	ft_pipex_child(int *pip, char **argv, char **envp);
+void	ft_pipex_parent(int *pip, char **argv, char **envp);
+
 
 #endif
