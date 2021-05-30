@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:38:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/30 10:55:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 11:03:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_pipex_parent(int *pip, char **argv, char **envp)
 {
 	int	fd;
 
-	wait(0);
 	close(pip[0]);
 	dup2(pip[1], 1);
 	close(pip[1]);
@@ -78,7 +77,7 @@ void	ft_pipex_child(int *pip, char **argv, char **envp)
 		errno = EISDIR;
 		exit(kemaexit("file2"));
 	}
-	fd = open(argv[4], O_WRONLY | O_TRUNC);
+	fd = open(argv[4], O_WRONLY | O_TRUNC | O_CREAT);
 	if (fd < 0)
 	{
 		errno = ENOENT;
