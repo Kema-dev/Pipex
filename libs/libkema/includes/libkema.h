@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 15:47:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/29 11:22:47 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/06/01 15:48:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "ft_dprintf.h"
 # include "../../../includes/pipex.h"
 # include <errno.h>
-#include <stdio.h>
+# include <stdio.h>
 
 #endif

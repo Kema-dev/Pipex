@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:28:31 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/30 09:20:02 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/06/01 15:47:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int		main(int argc, char **argv, char **envp);
 void	ft_pipex_exec_cmd(char *argv, char **envp);
 void	ft_pipex_child(int *pip, char **argv, char **envp);
 void	ft_pipex_parent(int *pip, char **argv, char **envp);
-
+void	ft_pipex_try_path(char **cmd, char *path, char *buf, char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:38:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/05/30 11:03:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/06/01 15:52:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	ft_pipex_parent(int *pip, char **argv, char **envp)
 {
 	int	fd;
 
+	wait(0);
 	close(pip[0]);
 	dup2(pip[1], 1);
 	close(pip[1]);
-	fd = open(argv[1], __O_DIRECTORY);
+	fd = open(argv[1], O_DIRECTORY);
 	if (fd > 0)
 	{
 		close(fd);
@@ -70,7 +71,7 @@ void	ft_pipex_child(int *pip, char **argv, char **envp)
 	close(pip[1]);
 	dup2(pip[0], 0);
 	close(pip[0]);
-	fd = open (argv[4], __O_DIRECTORY);
+	fd = open (argv[4], O_DIRECTORY);
 	if (fd > 0)
 	{
 		close(fd);
@@ -102,15 +103,19 @@ void	ft_pipex_exec_cmd(char *argv, char **envp)
 		;
 	path = ft_strjoin(ft_strdup(&envp[i][4]), "/");
 	buf = ft_strdup(cmd[0]);
+	ft_pipex_try_path(cmd, path, buf, envp);
+	ft_pipex_try_path(cmd, "/bin/", buf, envp);
+	ft_pipex_try_path(cmd, "/usr/bin/", buf, envp);
+	ft_pipex_try_path(cmd, "/usr/local/bin/", buf, envp);
+	ft_pipex_try_path(cmd, "/sbin/", buf, envp);
+	ft_pipex_try_path(cmd, "/usr/sbin/", buf, envp);
+	errno = ENOENT;
+	exit(kemaexit(buf));
+}
+
+void	ft_pipex_try_path(char **cmd, char *path, char *buf, char **envp)
+{
 	kemafree(cmd[0]);
 	cmd[0] = ft_strjoin(path, buf);
 	execve(cmd[0], &cmd[0], envp);
-	kemafree(cmd[0]);
-	cmd[0] = ft_strjoin("/bin/", buf);
-	execve(cmd[0], &cmd[0], envp);
-	kemafree(cmd[0]);
-	cmd[0] = ft_strjoin("/sbin/", buf);
-	execve(cmd[0], &cmd[0], envp);
-	errno = ENOENT;
-	exit(kemaexit(buf));
 }
