@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:38:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/06/01 15:52:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 13:18:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ int	main(int argc, char **argv, char **envp)
 		exit(kemaexit("Fork failed"));
 	}
 	if (pid == 0)
-		ft_pipex_parent(pip, argv, envp);
-	else
 		ft_pipex_child(pip, argv, envp);
+	else
+		ft_pipex_parent(pip, argv, envp);
 }
 
-void	ft_pipex_parent(int *pip, char **argv, char **envp)
+void	ft_pipex_child(int *pip, char **argv, char **envp)
 {
 	int	fd;
 
-	wait(0);
 	close(pip[0]);
 	dup2(pip[1], 1);
 	close(pip[1]);
@@ -64,10 +63,13 @@ void	ft_pipex_parent(int *pip, char **argv, char **envp)
 	exit(kemaexit("cmd1"));
 }
 
-void	ft_pipex_child(int *pip, char **argv, char **envp)
+void	ft_pipex_parent(int *pip, char **argv, char **envp)
 {
 	int	fd;
+	int	*status;
 
+	status = NULL;
+	wait(status);
 	close(pip[1]);
 	dup2(pip[0], 0);
 	close(pip[0]);
